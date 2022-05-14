@@ -18,9 +18,9 @@ public class Multi {
         // TODO code application logic here
         
         int num = 5;
-        for(int i = 1; i <= 10; ++i)
+        for(int j = 1; j <= 10; j++)
         {
-            System.out.printf("%d * %d = %d \n", num, i, num * i);
+            System.out.printf("%d * %d = %d \n", num, j, num * j);
         }
     }
     
