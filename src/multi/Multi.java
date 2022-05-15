@@ -1,27 +1,48 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package multi;
+package creational.pattern;
 
-/**
- *
- * @author Student
- */
-public class Multi {
+class DbConnection{
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        
-        int num = 5;
-        for(int j = 1; j <= 10; j++)
-        {
-            System.out.printf("%d * %d = %d \n", num, j, num * j);
-        }
+    private static DbConnection instance=null;
+
+    private DbConnection(String dbUser,String dbPassword,String dbName ) { 
+    	SQLConnection connection = new SQLConnection(dbUser, dbPassword, dbName);
+   }
+
+
+	public static DbConnection getDbConnection(String dbUser,String dbPassword,String dbName) {
+      if (instance== null ) 
+		instance = new DbConnection(dbUser,dbPassword,dbName) ;                           
+
+      return instance;
     }
-    
 }
+
+class SQLConnection {
+	
+	String dbUser;
+	String dbPassword;
+	String dbName;
+	
+	public SQLConnection(String dbUser, String dbPassword, String dbName) {
+		super();
+		this.dbUser = dbUser;
+		this.dbPassword = dbPassword;
+		this.dbName = dbName;
+	}
+	
+
+}
+
+
+class Test
+{
+	 public static void main(String[] args) throws Exception
+	 {
+		 String dbUser="admin";
+		 String dbPassword="admin";
+		 String dbName="tesDb";
+		 DbConnection connection=DbConnection.getDbConnection(dbUser, dbPassword, dbName);
+	 }
+}
+
+
